@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   loginUser(){
-    console.log('log in user povikana!!!');
+    console.log('The user is logged in !!!');
     this.setState({
       loggedin:true
     })
