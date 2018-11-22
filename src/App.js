@@ -1,27 +1,49 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Route,Link, Redirect} from 'react-router-dom';
+import LogInForm from './LogInForm'
+import Dashboard from './Dashboard'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+  constructor(){
+    super();
+    this.state={
+      loggedin:false
+    }
+    this.loginUser = this.loginUser.bind(this);
+  }
+
+  loginUser(){
+    console.log('log in user povikana!!!');
+    this.setState({
+      loggedin:true
+    })
+
+  }
+
+  render(){
+    if(this.state.loggedin){
+      return <Redirect to="/Dashboard"></Redirect>
+    }
+    return(
+      <div>
+        <h3>Title</h3>
+        <Route path="/" exact render={() => 
+            {
+              return <LogInForm loginUser={this.loginUser}/>          
+            }
+          }
+        ></Route>
+
+        <Route path="/Dashboard" exact render={() => 
+            {
+              return <Dashboard />          
+            }
+          }
+        ></Route>
       </div>
-    );
+    )
   }
 }
 
