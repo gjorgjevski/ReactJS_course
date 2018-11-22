@@ -13,8 +13,11 @@ class App extends Component {
     }
     this.loginUser = this.loginUser.bind(this);
   }
-
+///
+///
+///
   loginUser(){
+    console.log('The user is logged in !!!');
     console.log('The user is logged in !!!');
     this.setState({
       loggedin:true
